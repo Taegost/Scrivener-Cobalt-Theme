@@ -1,5 +1,5 @@
 QToolTip {
-    color: #ffffff;
+    color: palette(windowtext);
     background-color: palette(base);
     border: 1px solid palette(highlight);
     border-radius: 4px;
@@ -16,12 +16,14 @@ QMenuBar {
 }
 
 QMenuBar::item {
+    color: palette(WindowText)
     spacing: 2px;
     padding: 3px 4px;
     background: transparent;
 }
 
 QMenuBar::item:selected {
+    color: palette(WindowText)
     background-color: rgba(35, 78, 109, 75);
     border-left: 1px solid rgba(35, 78, 109, 127);
     border-right: 1px solid rgba(35, 78, 109, 127);
@@ -29,16 +31,18 @@ QMenuBar::item:selected {
 
 QMenuBar::item:pressed {
     background-color: palette(highlight);
-    border-left: 1px solid rgba(25, 25, 25, 127);
-    border-right: 1px solid rgba(25, 25, 25, 127);
+    border-left: 1px solid rgba(18, 39, 56, 127);
+    border-right: 1px solid rgba(18, 39, 56, 127);
 }
 
 QMenu {
+    color: palette(windowtext)
     background-color: palette(window);
     border: 1px solid palette(shadow);
 }
 
 QMenu::item {
+    
     min-width: 150px !important;
     /*horrid workaround qt bug where shortcuts overlap menu text*/
     border: 1px solid transparent;
@@ -56,7 +60,7 @@ QMenu::item:selected {
 }
 
 QMenu::icon:checked {
-    background-color: palette(background);
+    background-color: palette(window);
     border: 1px solid palette(highlight);
     border-radius: 2px;
 }
@@ -222,9 +226,9 @@ QDockWidget {
 
 QDockWidget::title {
     padding: 4px;
-    background-color: palette(background);
-    border: 1px solid rgba(25, 25, 25, 75);
-    border-bottom: 2px solid rgba(25, 25, 25, 75);
+    background-color: palette(window);
+    border: 1px solid rgba(18, 39, 56, 75);
+    border-bottom: 2px solid rgba(18, 39, 56, 75);
 }
 
 QDockWidget::close-button,
@@ -248,9 +252,9 @@ QDockWidget::float-button {
 }
 
 QGroupBox {
-    background-color: rgba(66, 66, 66, 50%);
+    background-color: rgba(35, 78, 109, 50%);
     margin-top: 27px;
-    border: 1px solid rgba(25, 25, 25, 127);
+    border: 1px solid rgba(18, 39, 56, 127);
     border-radius: 4px;
 }
 
@@ -259,7 +263,7 @@ QGroupBox::title {
     subcontrol-position: left top;
     padding: 4px 6px;
     margin-left: 3px;
-    background-color: palette(background);
+    background-color: palette(window);
     border: 1px solid palette(dark);
     border-bottom: 2px solid palette(midlight);
     border-top-left-radius: 4px;
@@ -284,7 +288,7 @@ QTabBar {
 
 QTabBar::tab {
     padding: 4px 6px;
-    background-color: palette(background);
+    background-color: palette(window);
     border: 1px solid palette(dark);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;

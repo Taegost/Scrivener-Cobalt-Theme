@@ -3,10 +3,10 @@ AlternateBase(66,66,66) //Used as the alternate background color in views with a
 Window(18,39,56) //A general background color
 ToolTipBase(18,39,56) //Used as the background color for ToolTip
 Button(18,39,56) //The general button background color
-Highlight(158,255,128) //A background color to indicate a selected item or the current item
+Highlight(31,70,98) //A background color to indicate a selected item or the current item
 
 //TEXTS
-WindowText(158,255,128) //A general foreground color
+WindowText(127,127,127) //A general foreground color
 Text(158,255,128) //The foreground color used with Base. This is usually the same as the WindowText, in which case it must provide good contrast with Window and Base
 BrightText(255,157,0) //A text color that is very different from WindowText, and contrasts well e.g. Dark. Typically used for text that needs to be drawn where Text or WindowText would give poor contrast, such as on pressed push buttons
 ButtonText(158,255,128) //A foreground color used with the Button color
