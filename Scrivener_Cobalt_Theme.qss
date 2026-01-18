@@ -59,12 +59,13 @@ QMenu::item:selected {
     color: palette(highlightedtext);
 }
 
-/* Force editor text (green) while keeping UI/menu text white-ish */
+/* Force editor look (green text, cobalt background, cobalt2 selection) */
 QTextEdit,
 QPlainTextEdit {
+    background-color: palette(base);
     color: rgb(158,255,128);
-    selection-background-color: palette(highlight);
-    selection-color: palette(highlightedtext);
+    selection-background-color: rgb(35,78,109);
+    selection-color: palette(windowtext);
 }
 QMenu::icon:checked {
     background-color: palette(window);
