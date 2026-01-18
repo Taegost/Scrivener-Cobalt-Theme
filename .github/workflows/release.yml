@@ -1,0 +1,89 @@
+name: Build + Release Scrivener Theme
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Optional: set an explicit tag (e.g. v1.2.3). Leave blank to auto-bump."
+        required: false
+        type: string
+      bump:
+        description: "Auto-bump type when release_tag is blank (patch/minor/major)."
+        required: false
+        default: "patch"
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      # If release_tag is provided (manual), use it.
+      - name: Set explicit tag (manual input)
+        id: manual_tag
+        if: github.event_name == 'workflow_dispatch' && inputs.release_tag != ''
+        run: |
+          echo "tag=${{ inputs.release_tag }}" >> "$GITHUB_OUTPUT"
+
+      # Otherwise, auto-bump on push to main (or on manual runs without a release_tag).
+      - name: Auto-bump tag
+        id: bump_tag
+        if: steps.manual_tag.outputs.tag == ''
+        uses: anothrNick/github-tag-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: ${{ github.event_name == 'workflow_dispatch' && inputs.bump || 'patch' }}
+          WITH_V: true
+
+      - name: Determine tag
+        id: tag
+        run: |
+          if [ -n "${{ steps.manual_tag.outputs.tag }}" ]; then
+            echo "tag=${{ steps.manual_tag.outputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=${{ steps.bump_tag.outputs.new_tag }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      # If user supplied a tag manually, create it (if it doesn't exist) and push it.
+      - name: Create and push manual tag (if missing)
+        if: github.event_name == 'workflow_dispatch' && inputs.release_tag != ''
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          if git rev-parse "${{ steps.tag.outputs.tag }}" >/dev/null 2>&1; then
+            echo "Tag already exists"
+          else
+            git tag "${{ steps.tag.outputs.tag }}"
+            git push origin "${{ steps.tag.outputs.tag }}"
+          fi
+
+      - name: Package .scrtheme (zip)
+        run: |
+          zip -j Scrivener_Cobalt_Theme.scrtheme \
+            Scrivener_Cobalt_Theme.pal \
+            Scrivener_Cobalt_Theme.prefs \
+            Scrivener_Cobalt_Theme.qss \
+            Scrivener_Cobalt_Theme.xml
+
+      - name: Create GitHub Release + upload asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: ${{ steps.tag.outputs.tag }}
+          files: Scrivener_Cobalt_Theme.scrtheme
+          generate_release_notes: true
