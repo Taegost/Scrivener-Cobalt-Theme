@@ -1,3 +1,31 @@
+/* --- Buttons: make them visible on dark backgrounds --- */
+QToolButton,
+QPushButton,
+QAbstractButton {
+    color: rgb(255,255,255);
+    background-color: palette(button);
+    border: 1px solid rgb(25,53,73);      /* cobalt dark */
+}
+
+QToolButton:hover,
+QPushButton:hover,
+QAbstractButton:hover {
+    background-color: rgb(42,95,136);
+}
+
+QToolButton:checked,
+QPushButton:checked,
+QAbstractButton:checked {
+    background-color: rgb(35,78,109);
+}
+
+QToolButton:pressed,
+QPushButton:pressed,
+QAbstractButton:pressed {
+    background-color: rgb(25,53,73);
+}
+
+
 QStatusBar {
     background-color: rgba(25, 53, 73, 75);
     color: palette(mid);
