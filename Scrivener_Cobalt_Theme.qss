@@ -1,10 +1,3 @@
-QToolTip {
-    color: palette(windowtext);
-    background-color: palette(base);
-    border: 1px solid palette(highlight);
-    border-radius: 4px;
-}
-
 QStatusBar {
     background-color: rgba(25, 53, 73, 75);
     color: palette(mid);
@@ -382,4 +375,18 @@ QToolBar::left {
 QToolBar::right {
     background-color: rgba(25, 53, 73, 75);
     border-left: 3px solid rgba(25, 53, 73, 75);
+}
+
+QToolTip {
+    /* Force tooltip colors (Qt on Windows can ignore palette roles without explicit colors) */
+    color: rgb(175,175,175);
+    background-color: rgb(18,39,56);
+    border: 1px solid palette(mid);
+    border-radius: 4px;
+    padding: 6px;
+}
+
+QToolTip * {
+    color: rgb(255,255,255);
+    background-color: transparent;
 }
