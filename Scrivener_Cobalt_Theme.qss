@@ -16,14 +16,14 @@ QMenuBar {
 }
 
 QMenuBar::item {
-    color: palette(WindowText)
+    color: palette(windowtext);
     spacing: 2px;
     padding: 3px 4px;
     background: transparent;
 }
 
 QMenuBar::item:selected {
-    color: palette(WindowText)
+    color: palette(windowtext);
     background-color: rgba(35, 78, 109, 75);
     border-left: 1px solid rgba(35, 78, 109, 127);
     border-right: 1px solid rgba(35, 78, 109, 127);
@@ -36,15 +36,14 @@ QMenuBar::item:pressed {
 }
 
 QMenu {
-    color: palette(windowtext)
+    color: palette(windowtext);
     background-color: palette(window);
     border: 1px solid palette(shadow);
 }
 
 QMenu::item {
-    
     min-width: 150px !important;
-    /*horrid workaround qt bug where shortcuts overlap menu text*/
+    /* horrid workaround qt bug where shortcuts overlap menu text */
     border: 1px solid transparent;
     padding: 1px 20px 1px 26px !important;
     margin: 1px !important;
@@ -57,8 +56,16 @@ QMenu::item:disabled {
 QMenu::item:selected {
     border-color: palette(highlight);
     background: palette(highlight);
+    color: palette(highlightedtext);
 }
 
+/* Force editor text (green) while keeping UI/menu text white-ish */
+QTextEdit,
+QPlainTextEdit {
+    color: rgb(158,255,128);
+    selection-background-color: palette(highlight);
+    selection-color: palette(highlightedtext);
+}
 QMenu::icon:checked {
     background-color: palette(window);
     border: 1px solid palette(highlight);
