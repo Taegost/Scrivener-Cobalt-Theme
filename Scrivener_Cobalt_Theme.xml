@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrivenerThemes>
+    <ScrivenerTheme name="Scrivener_Cobalt_Theme" style="Cobalt">
+        <qtstylesheet>Scrivener_Cobalt_Theme.qss</qtstylesheet>
+        <palette>Scrivener_Cobalt_Theme.pal</palette>
+        <preferences load="Colors">Scrivener_Cobalt_Theme.prefs</preferences>
+    </ScrivenerTheme>
+</ScrivenerThemes>
